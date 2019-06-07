@@ -65,13 +65,26 @@ function print(str) {
 
 //Check balanced parenthesis
 function isBalancedParenthesis(str) {
-  return !str.split('').reduce((uptoPrevChar, thisChar) => {
-    if (thisChar === '(' || thisChar === '{' || thisChar === '[' ) {
-      return ++uptoPrevChar;
-    } else if (thisChar === ')' || thisChar === '}' || thisChar === ']') {
-      return --uptoPrevChar;
-    }
+  let stack = [];
+  const map = {
+    '(': ')',
+    '[': ']',
+    '{': '}'
+  }
 
-    return uptoPrevChar;
-  }, 0);
+  Array.from(str).forEach(thisChar => {
+    if (thisChar === '(' || thisChar === '{' || thisChar === '[' ) {
+      stack.push(thisChar);
+    } else {
+      let initialChar = stack.pop();
+      
+      if (thisChar !== map[initialChar]) { 
+        stack.push(initialChar); //return it to stack
+        return false };
+    }
+  });
+
+  if (stack.length !== 0) { return false };
+
+  return true;
 };
