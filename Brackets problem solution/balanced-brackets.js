@@ -26,7 +26,7 @@ function askForUserInput() {
     const questionVerifyAgain = [{
       type: 'input',
       name: 'verifyAgain',
-      message: "Do you want to verify another text? (y/n)",
+      message: 'Do you want to verify another text? (y/n)',
     }];
 
     const checkVerifyAgainAnswer = (answers, name) => {
@@ -39,7 +39,7 @@ function askForUserInput() {
         print('\nThanks for using the "balanced brackets" program, see you soon!\n');
       } else {
         print('\n');
-        questionNotValid = [{
+        const questionNotValid = [{
           type: 'input',
           name: 'notValid',
           message: 'This answer was not valid, please type "y" for yes and "n" for no.\n',
@@ -60,7 +60,7 @@ function askForUserInput() {
 
 //print on console
 function print(str) {
-  console.log(str);
+  process.stdout.write(str);
 }
 
 //check balanced parenthesis
@@ -74,7 +74,7 @@ function isBalancedParenthesis(str) {
   };
 
   //iterate string chars
-  for (i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     if (str[i] === '(' || str[i] === '{' || str[i] === '[' ) {
       stack.push(str[i]);
     } else {
