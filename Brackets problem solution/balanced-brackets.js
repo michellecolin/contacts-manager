@@ -8,10 +8,10 @@ const questionText = [{
 }];
 
 print('\nWelcome to the "balanced brackets" program! Here you can verify if your brackets are balanced :)\n');
-askForUserText();
+askForUserInput();
 
 //----- functions ----
-function askForUserText() {
+function askForUserInput() {
   inquirer.prompt(questionText).then(answers => {
     print('\nVerifying...');
   
@@ -34,7 +34,7 @@ function askForUserText() {
 
       if (answer === 'y') {
         print('\n');
-        askForUserText();
+        askForUserInput();
       } else if (answer === 'n') {
         print('\nThanks for using the "balanced brackets" program, see you soon!\n');
       } else {
