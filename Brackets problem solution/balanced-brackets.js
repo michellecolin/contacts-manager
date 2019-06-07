@@ -63,28 +63,30 @@ function print(str) {
   console.log(str);
 }
 
-//Check balanced parenthesis
+//check balanced parenthesis
 function isBalancedParenthesis(str) {
   let stack = [];
-  const map = {
+
+  const map = { //matching brackets
     '(': ')',
     '[': ']',
     '{': '}'
-  }
+  };
 
-  Array.from(str).forEach(thisChar => {
-    if (thisChar === '(' || thisChar === '{' || thisChar === '[' ) {
-      stack.push(thisChar);
+  //iterate string chars
+  for (i = 0; i < str.length; i++) {
+    if (str[i] === '(' || str[i] === '{' || str[i] === '[' ) {
+      stack.push(str[i]);
     } else {
       let initialChar = stack.pop();
-      
-      if (thisChar !== map[initialChar]) { 
+
+      if (str[i] !== map[initialChar]) { //chars don't match
         stack.push(initialChar); //return it to stack
-        return false };
+        break; //stop for loop => the brackets are not balanced
+      }
     }
-  });
+  }
 
-  if (stack.length !== 0) { return false };
-
+  if (stack.length !== 0) { return false; } //brackets not balanced
   return true;
-};
+}
