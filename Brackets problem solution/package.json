@@ -1,0 +1,11 @@
+{
+  "name": "balanced-brackets",
+  "version": "1.0.0",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-strongloop": "^2.1.0"
+  },
+  "dependencies": {
+    "inquirer": "^6.3.1"
+  }
+}
