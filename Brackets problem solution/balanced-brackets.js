@@ -1,25 +1,26 @@
 const inquirer = require('inquirer');
 
+//start
 const questionText = [{
   type: 'input',
   name: 'string',
   message: 'Please, input the text you want to verify:',
 }];
 
-write('\nWelcome to the "balanced brackets" program! Here you can verify if your brackets are balanced :)\n');
+print('\nWelcome to the "balanced brackets" program! Here you can verify if your brackets are balanced :)\n');
 askForUserText();
 
 //----- functions ----
 function askForUserText() {
   inquirer.prompt(questionText).then(answers => {
-    write('\nVerifying...');
+    print('\nVerifying...');
   
     const isBalanced = isBalancedParenthesis(answers['string']);
   
     if (isBalanced) {
-      write('\nYour text brackets are balanced! Yay :)\n');
+      print('\x1b[32m\nYour text brackets are balanced! Yay :)\n');
     } else {
-      write('\nYour text brackets are NOT balanced! :(\n');
+      print('\x1b[31m\nYour text brackets are NOT balanced! :(\n');
     }
   
     const questionVerifyAgain = [{
@@ -32,12 +33,12 @@ function askForUserText() {
       let answer = answers[name].toLowerCase(); 
 
       if (answer === 'y') {
-        write('\n');
+        print('\n');
         askForUserText();
       } else if (answer === 'n') {
-        write('\nThanks for using the "balanced brackets" program, see you soon!\n');
+        print('\nThanks for using the "balanced brackets" program, see you soon!\n');
       } else {
-        write('\n');
+        print('\n');
         questionNotValid = [{
           type: 'input',
           name: 'notValid',
@@ -57,10 +58,12 @@ function askForUserText() {
   });
 }
 
-function write(str) {
+//print on console
+function print(str) {
   console.log(str);
 }
 
+//Check balanced parenthesis
 function isBalancedParenthesis(str) {
   return !str.split('').reduce((uptoPrevChar, thisChar) => {
     if (thisChar === '(' || thisChar === '{' || thisChar === '[' ) {
