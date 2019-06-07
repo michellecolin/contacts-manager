@@ -3,60 +3,72 @@ const inquirer = require('inquirer');
 const questionText = [{
   type: 'input',
   name: 'string',
-  message: "Please, input the text you want to verify:",
+  message: 'Please, input the text you want to verify:',
 }];
 
-console.log('\nWelcome to the "balanced brackets" program! Here you can verify if your brackets are balanced :)\n');
+write('\nWelcome to the "balanced brackets" program! Here you can verify if your brackets are balanced :)\n');
 askForUserText();
-
 
 //----- functions ----
 function askForUserText() {
   inquirer.prompt(questionText).then(answers => {
-    console.log('\nVerifying...');
+    write('\nVerifying...');
   
     const isBalanced = isBalancedParenthesis(answers['string']);
   
     if (isBalanced) {
-      console.log('\nYour text brackets are balanced! Yay :)\n');
+      write('\nYour text brackets are balanced! Yay :)\n');
     } else {
-      console.log('\nYour text brackets are NOT balanced! :(\n');
+      write('\nYour text brackets are NOT balanced! :(\n');
     }
   
-    const questionVeirfyAgain = [{
+    const questionVerifyAgain = [{
       type: 'input',
       name: 'verifyAgain',
       message: "Do you want to verify another text? (y/n)",
     }];
-  
-    inquirer.prompt(questionVeirfyAgain).then(answers => {
-      let answer = answers['verifyAgain'].toLowerCase(); 
+
+    const checkVerifyAgainAnswer = (answers, name) => {
+      let answer = answers[name].toLowerCase(); 
 
       if (answer === 'y') {
-        console.log('\n');
+        write('\n');
         askForUserText();
       } else if (answer === 'n') {
-        console.log('\nThanks for using the "balanced brackets" program, see you soon!\n');
+        write('\nThanks for using the "balanced brackets" program, see you soon!\n');
       } else {
+        write('\n');
         questionNotValid = [{
           type: 'input',
           name: 'notValid',
           message: 'This answer was not valid, please type "y" for yes and "n" for no.\n',
         }];
+
+        inquirer.prompt(questionNotValid).then(answers => {
+          checkVerifyAgainAnswer(answers, 'notValid');
+        });
       }
+    };
+
+    inquirer.prompt(questionVerifyAgain).then(answers => {
+      checkVerifyAgainAnswer(answers, 'verifyAgain');
     });
-  
+
   });
+}
+
+function write(str) {
+  console.log(str);
 }
 
 function isBalancedParenthesis(str) {
   return !str.split('').reduce((uptoPrevChar, thisChar) => {
-      if(thisChar === '(' || thisChar === '{' || thisChar === '[' ) {
-          return ++uptoPrevChar;
-      } else if (thisChar === ')' || thisChar === '}' || thisChar === ']') {
-          return --uptoPrevChar;
-      }
+    if (thisChar === '(' || thisChar === '{' || thisChar === '[' ) {
+      return ++uptoPrevChar;
+    } else if (thisChar === ')' || thisChar === '}' || thisChar === ']') {
+      return --uptoPrevChar;
+    }
 
-      return uptoPrevChar
+    return uptoPrevChar;
   }, 0);
 };
