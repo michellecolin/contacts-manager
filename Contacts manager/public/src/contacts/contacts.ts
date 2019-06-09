@@ -1,11 +1,11 @@
 /// <reference path="../../../typings/index.d.ts" />
 
-module app.people {
+module app.contacts {
 
     'use strict';
 
-    export interface IPeopleCtrl {}
-    export class PeopleCtrl implements IPeopleCtrl {
+    export interface IContactsCtrl {}
+    export class ContactsCtrl implements IContactsCtrl {
         constructor(){}
         getExcited: boolean = false;
     }
@@ -13,5 +13,5 @@ module app.people {
 
     angular
         .module('contactsManagerApp')
-        .controller('PeopleCtrl', PeopleCtrl)
+        .controller('ContactsCtrl', ContactsCtrl)
 }
