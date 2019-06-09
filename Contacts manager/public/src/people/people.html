@@ -1,12 +1,36 @@
 <div id="people-css-inject">
 
-	<h2>Hello directive!</h2>
-
-	<button ng-click="vm.getExcited = !vm.getExcited">
-		Go ahead, click me - I'm wired up to ng ready to go!
-	</button>
-	<div ng-show="vm.getExcited">
-		<h3>Yeeehaww!</h3>
+	<div class="mt-4">
+		<h5 class="float-left">People's List</h5>
+		<button class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add Person</button>
 	</div>
+	<div class="clearfix"></div>
 
+	<table class="mt-4 table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Name</th>
+				<th scope="col">N° Contacts</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Jacob</td>
+				<td>10</td>
+				<td>
+					<button class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit this person"><i class="fas fa-user-edit"></i></button>
+					<button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this person"><i class="fas fa-times"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>Jacob</td>
+				<td>10</td>
+				<td>
+					<button class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit this person"><i class="fas fa-user-edit"></i></button>
+					<button class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this person"><i class="fas fa-times"></i></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>

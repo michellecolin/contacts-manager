@@ -10,7 +10,11 @@ module app {
     routeConfig.$inject = ['$routeProvider'];
     function routeConfig($routeProvider: ng.route.IRouteProvider): void {
         $routeProvider
-        .when('/productList', {
+        .when('/people', {
+            templateUrl: "app-templates/people/people.html",
+            controller: "PeopleCtrl as vm"
+        })
+        .when('/people/:id', {
             templateUrl: "app-templates/people/people.html",
             controller: "PeopleCtrl as vm"
         })
@@ -18,7 +22,7 @@ module app {
             templateUrl: "app-templates/teste/teste.html",
             controller: "TesteCtrl as demoCtrlVM"
         })
-        .otherwise("/productList");
+        .otherwise("/people");
     }
 
     class AppCtrl {
