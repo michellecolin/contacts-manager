@@ -14,9 +14,9 @@ module app {
             templateUrl: "app-templates/people/people.html",
             controller: "PeopleCtrl as vm"
         })
-        .when('/people/:id', {
-            templateUrl: "app-templates/people/people.html",
-            controller: "PeopleCtrl as vm"
+        .when('/person', {
+            templateUrl: "app-templates/people/person/person.html",
+            controller: "PersonCtrl as vm"
         })
         .when('/teste', {
             templateUrl: "app-templates/teste/teste.html",
