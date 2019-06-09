@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="contactsManagerApp">
+<html id="app-css-inject" lang="en" ng-app="contactsManagerApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Hello Angular TypeScript!</title>
@@ -7,35 +7,18 @@
 	<link rel="stylesheet" href="/dist/app.css">
 	<!-- endinject -->
 	<link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
-
-	<style>
-		body {
-			padding-top: 50px;
-		}
-		.starter-template {
-			padding: 40px 15px;
-			text-align: center;
-		}
-	</style>
-
-	<!--[if lt IE 9]>
-		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
 </head>
-<body>
+<body ng-controller="AppCtrl">
+
+	<!-- As a heading -->
+<nav class="navbar navbar-light bg-light">
+	<span class="navbar-brand mb-0 h1">My Contacts Manager</span>
+</nav>
 
 <div class="container">
-
-	<div class="starter-template">
-		<h1>contacts-manager has been scaffolded, yo!</h1>
-		<p class="lead">With layouts and styling by bootstrap</p>
-
-		<ng-view></ng-view>
-
-	</div>
-
+	<ng-view></ng-view>
 </div>
+
 	<script src="lib/jquery/dist/jquery.min.js"></script>
 	<script src="lib/angular/angular.min.js"></script>
 	<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>

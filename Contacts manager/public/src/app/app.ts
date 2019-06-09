@@ -5,13 +5,14 @@ module app {
         'ngRoute'
     ]);
 
+    //routes
     main.config(routeConfig);
     routeConfig.$inject = ['$routeProvider'];
     function routeConfig($routeProvider: ng.route.IRouteProvider): void {
         $routeProvider
         .when('/productList', {
-            templateUrl: "app-templates/demo/demo.html",
-            controller: "DemoCtrl as demoCtrlVM"
+            templateUrl: "app-templates/people/people.html",
+            controller: "PeopleCtrl as vm"
         })
         .when('/teste', {
             templateUrl: "app-templates/teste/teste.html",
@@ -19,5 +20,11 @@ module app {
         })
         .otherwise("/productList");
     }
-}
 
+    class AppCtrl {
+        constructor() {
+            console.log('app controller');
+        }
+    }
+    main.controller('AppCtrl', AppCtrl);
+}
