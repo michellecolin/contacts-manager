@@ -1,17 +1,17 @@
-#contact-css-inject .avatar {
+#contact-view-css-inject .avatar {
   height: 150px;
   width: 150px;
   background-color: #dddddd; }
-  #contact-css-inject .avatar.selected {
+  #contact-view-css-inject .avatar.selected {
     background-color: transparent; }
-    #contact-css-inject .avatar.selected img {
+    #contact-view-css-inject .avatar.selected img {
       opacity: 1; }
-  #contact-css-inject .avatar img {
+  #contact-view-css-inject .avatar img {
     height: 85%;
     margin-top: 10px;
     width: 100%;
     opacity: 0.1; }
-  #contact-css-inject .avatar .select {
+  #contact-view-css-inject .avatar .select {
     margin-top: -40px;
     text-align: center;
     color: #007bff;

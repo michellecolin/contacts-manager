@@ -1,13 +1,22 @@
 /// <reference path="../../../typings/index.d.ts" />
 
 module app.contacts {
+    export class ContactsCtrl {
+        contacts: Contact[];
 
-    'use strict';
+        static $inject = ['AppService'];
+        constructor(public appService: AppService) {
+            this.load();
+        }
 
-    export interface IContactsCtrl {}
-    export class ContactsCtrl implements IContactsCtrl {
-        constructor(){}
-        getExcited: boolean = false;
+        load() {
+            this.contacts = this.appService.getContacts();
+            console.log(this.contacts);
+        }
+
+        removeContact(id) {
+            console.log('remove');
+        }
     }
 
 
