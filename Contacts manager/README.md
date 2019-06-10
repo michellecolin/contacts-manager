@@ -4,13 +4,13 @@
 
 ### install
 ```
- typings install
- npm install
+typings install
+npm install
 ```
 
 ### Run
 ```
- gulp
+gulp
 ```
 ### Build dist
 
