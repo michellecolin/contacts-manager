@@ -2,7 +2,8 @@
 module app {
     let main = angular.module('contactsManagerApp', [
         'app.templates',
-        'ngRoute'
+        'ngRoute',
+        'ngFileUpload'
     ]);
 
     //routes
@@ -14,15 +15,15 @@ module app {
             templateUrl: "app-templates/contacts/contacts.html",
             controller: "ContactsCtrl as vm"
         })
-        .when('/person', {
-            templateUrl: "app-templates/people/person/person.html",
-            controller: "PersonCtrl as vm"
+        .when('/contact', {
+            templateUrl: "app-templates/contact/contact.html",
+            controller: "ContactCtrl as vm"
         })
         .when('/teste', {
             templateUrl: "app-templates/teste/teste.html",
             controller: "TesteCtrl as demoCtrlVM"
         })
-        .otherwise("/contacts");
+        //.otherwise("/contacts");
     }
 
     class AppCtrl {

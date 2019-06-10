@@ -68,7 +68,8 @@ gulp.task('js', function() {
 		'node_modules/angular/angular.min.js',
 		'node_modules/bootstrap/dist/js/bootstrap.min.js',
 		'node_modules/bootstrap/dist/css/bootstrap.min.css',
-		'node_modules/angular-route/angular-route.min.js'
+		'node_modules/angular-route/angular-route.min.js',
+		'node_modules/ng-file-upload/dist/ng-file-upload.min.js'
 	],
 	{base:'node_modules'})
 	.pipe(gulp.dest("./public/lib"))
