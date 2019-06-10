@@ -11,3 +11,33 @@
 
 #app-css-inject .sortorder.reverse:after {
   content: '\25bc'; }
+
+#app-css-inject .avatar {
+  height: 150px;
+  width: 150px;
+  background-color: #dddddd;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; }
+  #app-css-inject .avatar.small {
+    height: 80px;
+    width: 80px; }
+  #app-css-inject .avatar.selected {
+    background-color: transparent; }
+    #app-css-inject .avatar.selected img {
+      opacity: 1; }
+  #app-css-inject .avatar img {
+    height: 85%;
+    margin-top: 10px;
+    width: 100%;
+    opacity: 0.1; }
+  #app-css-inject .avatar .select {
+    margin-top: -40px;
+    text-align: center;
+    color: #007bff;
+    font-size: 30px;
+    position: absolute;
+    margin-left: 60px; }
+
+#app-css-inject td {
+  vertical-align: middle; }

@@ -25,4 +25,45 @@
       }
     }
   }
+
+  .avatar {
+    height: 150px;
+    width: 150px;
+    background-color: #dddddd;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &.small {
+      height: 80px;
+      width: 80px;
+    }
+
+    &.selected {
+      background-color: transparent;
+      img {
+        opacity: 1;
+      }
+    }
+
+    img {
+      height: 85%;
+      margin-top: 10px;
+      width: 100%;
+      opacity: 0.1;
+    }
+
+    .select {
+      margin-top: -40px;
+      text-align: center;
+      color: #007bff;
+      font-size: 30px;
+      position: absolute;
+      margin-left: 60px;
+    }
+  }
+
+  td {
+    vertical-align: middle;
+  }
 }

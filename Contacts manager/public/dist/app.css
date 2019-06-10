@@ -15,28 +15,37 @@
 #app-css-inject .sortorder.reverse:after {
   content: '\25bc';
 }
-#contact-css-inject .avatar {
+
+#app-css-inject .avatar {
   height: 150px;
   width: 150px;
   background-color: #dddddd;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-#contact-css-inject .avatar.selected {
+#app-css-inject .avatar.small {
+  height: 80px;
+  width: 80px;
+}
+
+#app-css-inject .avatar.selected {
   background-color: transparent;
 }
 
-#contact-css-inject .avatar.selected img {
+#app-css-inject .avatar.selected img {
   opacity: 1;
 }
 
-#contact-css-inject .avatar img {
+#app-css-inject .avatar img {
   height: 85%;
   margin-top: 10px;
   width: 100%;
   opacity: 0.1;
 }
 
-#contact-css-inject .avatar .select {
+#app-css-inject .avatar .select {
   margin-top: -40px;
   text-align: center;
   color: #007bff;
@@ -44,35 +53,12 @@
   position: absolute;
   margin-left: 60px;
 }
-#contact-view-css-inject .avatar {
-  height: 150px;
-  width: 150px;
-  background-color: #dddddd;
+
+#app-css-inject td {
+  vertical-align: middle;
 }
 
-#contact-view-css-inject .avatar.selected {
-  background-color: transparent;
-}
 
-#contact-view-css-inject .avatar.selected img {
-  opacity: 1;
-}
-
-#contact-view-css-inject .avatar img {
-  height: 85%;
-  margin-top: 10px;
-  width: 100%;
-  opacity: 0.1;
-}
-
-#contact-view-css-inject .avatar .select {
-  margin-top: -40px;
-  text-align: center;
-  color: #007bff;
-  font-size: 30px;
-  position: absolute;
-  margin-left: 60px;
-}
 #contacts-css-inject {
   height: 100%;
 }
