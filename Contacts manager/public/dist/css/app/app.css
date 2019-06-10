@@ -1,4 +1,7 @@
 #app-css-inject .form-error {
-  color: #f10f0f;
+  color: #bd2130;
   font-size: 14px;
   margin-top: 5px; }
+
+#app-css-inject .sweet-alert button.confirm {
+  background-color: #bd2130 !important; }

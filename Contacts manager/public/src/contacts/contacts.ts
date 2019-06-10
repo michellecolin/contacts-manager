@@ -4,8 +4,11 @@ module app.contacts {
     export class ContactsCtrl {
         contacts: Contact[];
 
-        static $inject = ['AppService'];
-        constructor(public appService: AppService) {
+        static $inject = ['AppService', 'SweetAlert'];
+        constructor(
+            public appService: AppService,
+            public SweetAlert: SweetAlert
+        ) {
             this.load();
         }
 
@@ -14,8 +17,26 @@ module app.contacts {
             console.log(this.contacts);
         }
 
-        removeContact(id) {
-            console.log('remove');
+        removeContact(index) {
+            this.SweetAlert.swal(
+                {
+                    title: 'Delete this contact?',
+                    text: 'Are you sure you want to delete this contact?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Delete',
+                    closeOnConfirm: false
+                }, 
+                (isConfirm) => { 
+                    if (isConfirm) {
+                        this.appService.removeContact(index);
+                        this.SweetAlert.swal({
+                            title: 'Contact Removed!',
+                            type: 'success',
+                            text: 'Contact removed successfully.'
+                        });
+                    }
+                });
         }
     }
 

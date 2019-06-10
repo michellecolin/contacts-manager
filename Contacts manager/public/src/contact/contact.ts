@@ -14,7 +14,6 @@ module app.contact {
             public SweetAlert: SweetAlert
         ) {
             this.methodsOptions = this.appService.getMethodsOptions();
-
             this.methods = [{type: null, value: null}];
         }
 

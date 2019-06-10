@@ -1,7 +1,17 @@
 #app-css-inject {
+  $red: #bd2130;
+  
   .form-error {
-    color: #f10f0f;
+    color: $red;
     font-size: 14px;
     margin-top: 5px;
+  }
+
+  .sweet-alert {
+    button {
+      &.confirm {
+        background-color: $red !important;
+      }
+    }
   }
 }

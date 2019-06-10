@@ -18,12 +18,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="contact in vm.contacts">
+			<tr ng-if="vm.contacts.length == 0">
+				<td colspan="2">You don't have contacts registered :(</td>
+			</tr>
+			<tr ng-if="vm.contacts.length > 0" ng-repeat="contact in vm.contacts">
 				<td>{{contact.name}}</td>
 				<td class="text-right">
 					<a ng-href="#!/contact/view/{{contact.id}}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View this contact"><i class="fas fa-eye"></i></a>
 					<a ng-href="#!contact/{{contact.id}}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit this contact"><i class="fas fa-user-edit"></i></a>
-					<button ng-click="vm.removeContact(contact.id)" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this contact"><i class="fas fa-times"></i></button>
+					<button ng-click="vm.removeContact($index)" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this contact"><i class="fas fa-times"></i></button>
 				</td>
 			</tr>
 		</tbody>

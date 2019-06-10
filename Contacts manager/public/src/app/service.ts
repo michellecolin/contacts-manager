@@ -36,6 +36,10 @@ module app.contact {
 
       console.log(this.contacts);
     }
+
+    removeContact(id) {
+      this.contacts.splice(id, 1);
+    }
   }
 
   angular

@@ -1,36 +1,11 @@
 #app-css-inject .form-error {
-  color: #f10f0f;
+  color: #bd2130;
   font-size: 14px;
   margin-top: 5px;
 }
-#contact-view-css-inject .avatar {
-  height: 150px;
-  width: 150px;
-  background-color: #dddddd;
-}
 
-#contact-view-css-inject .avatar.selected {
-  background-color: transparent;
-}
-
-#contact-view-css-inject .avatar.selected img {
-  opacity: 1;
-}
-
-#contact-view-css-inject .avatar img {
-  height: 85%;
-  margin-top: 10px;
-  width: 100%;
-  opacity: 0.1;
-}
-
-#contact-view-css-inject .avatar .select {
-  margin-top: -40px;
-  text-align: center;
-  color: #007bff;
-  font-size: 30px;
-  position: absolute;
-  margin-left: 60px;
+#app-css-inject .sweet-alert button.confirm {
+  background-color: #bd2130 !important;
 }
 #contact-css-inject .avatar {
   height: 150px;
@@ -54,6 +29,35 @@
 }
 
 #contact-css-inject .avatar .select {
+  margin-top: -40px;
+  text-align: center;
+  color: #007bff;
+  font-size: 30px;
+  position: absolute;
+  margin-left: 60px;
+}
+#contact-view-css-inject .avatar {
+  height: 150px;
+  width: 150px;
+  background-color: #dddddd;
+}
+
+#contact-view-css-inject .avatar.selected {
+  background-color: transparent;
+}
+
+#contact-view-css-inject .avatar.selected img {
+  opacity: 1;
+}
+
+#contact-view-css-inject .avatar img {
+  height: 85%;
+  margin-top: 10px;
+  width: 100%;
+  opacity: 0.1;
+}
+
+#contact-view-css-inject .avatar .select {
   margin-top: -40px;
   text-align: center;
   color: #007bff;
