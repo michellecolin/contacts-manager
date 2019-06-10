@@ -1,6 +1,6 @@
 Contact = require('./contactModel');
-// Handle index actions
 
+//Get all contacts stored
 exports.index = (req, res) => {
   Contact.get((err, contacts) => {
     if (err) {
@@ -16,24 +16,27 @@ exports.index = (req, res) => {
     });
   });
 };
-// Handle create contact actions
+
+// Create a new contact
 exports.new = (req, res) => {
   var contact = new Contact();
   contact.name = req.body.name ? req.body.name : contact.name;
-  contact.gender = req.body.gender;
-  contact.email = req.body.email;
-  contact.phone = req.body.phone;
-// save the contact and check for errors
+  contact.nickname = req.body.nickname;
+  contact.methods = req.body.methods;
+
+  // save the contact and check for errors
   contact.save((err) => {
-    // if (err)
-    //     res.json(err);
-  res.json({
+    if (err) {
+      res.json(err);
+    }
+    res.json({
       message: 'New contact created!',
       data: contact
     });
   });
 };
-// Handle view contact info
+
+// Get specific contact
 exports.view = (req, res) => {
   Contact.findById(req.params.contact_id, (err, contact) => {
     if (err) {
@@ -45,29 +48,31 @@ exports.view = (req, res) => {
     });
   });
 };
-// Handle update contact info
+
+// Update contact
 exports.update = (req, res)  => {
   Contact.findById(req.params.contact_id, (err, contact) => {
     if (err) {
       res.send(err);
-      contact.name = req.body.name ? req.body.name : contact.name;
-      contact.gender = req.body.gender;
-      contact.email = req.body.email;
-      contact.phone = req.body.phone;
-      // save the contact and check for errors
-      contact.save( (err) => {
-        if (err) {
-          res.json(err);
-        }
-        res.json({
-          message: 'Contact Info updated',
-          data: contact
-        });
-      });
     }
+    contact.name = req.body.name ? req.body.name : contact.name;
+    contact.nickname = req.body.nickname;
+    contact.methods = req.body.methods;
+    
+    // save the contact and check for errors
+    contact.save((err) => {
+      if (err) {
+        res.json(err);
+      }
+      res.json({
+        message: 'Contact Info updated',
+        data: contact
+      });
+    });
   });
 };
-// Handle delete contact
+
+// Delete a contact
 exports.delete = (req, res) => {
   Contact.remove({
     _id: req.params.contact_id

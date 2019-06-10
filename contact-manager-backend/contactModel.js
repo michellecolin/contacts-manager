@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+
 // Setup schema
 var contactSchema = mongoose.Schema({
     name: {
@@ -6,11 +7,9 @@ var contactSchema = mongoose.Schema({
       required: true
     },
     nickname: String,
-    email: String,
-    phone: String,
-    facebook: String,
-    whatsapp: String
+    methods: []
 });
+
 // Export Contact model
 var Contact = module.exports = mongoose.model('contact', contactSchema);
 module.exports.get = (callback, limit) => {
