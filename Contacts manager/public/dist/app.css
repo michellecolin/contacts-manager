@@ -4,6 +4,11 @@
   margin-top: 5px;
 }
 
+#app-css-inject .delete-input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 #app-css-inject .sweet-alert button.confirm {
   background-color: #bd2130 !important;
 }
@@ -19,10 +24,10 @@
 #app-css-inject .avatar {
   height: 150px;
   width: 150px;
-  background-color: #dddddd;
-  background-size: cover;
+  overflow: hidden;
+  background-image: url("https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png");
+  background-size: contain;
   background-position: center;
-  background-repeat: no-repeat;
 }
 
 #app-css-inject .avatar.small {
@@ -31,27 +36,33 @@
 }
 
 #app-css-inject .avatar.selected {
-  background-color: transparent;
-}
-
-#app-css-inject .avatar.selected img {
-  opacity: 1;
+  background-image: none;
 }
 
 #app-css-inject .avatar img {
-  height: 85%;
-  margin-top: 10px;
-  width: 100%;
-  opacity: 0.1;
+  height: 100%;
+  width: auto;
 }
 
 #app-css-inject .avatar .select {
+  cursor: pointer;
   margin-top: -40px;
   text-align: center;
   color: #007bff;
   font-size: 30px;
   position: absolute;
   margin-left: 60px;
+}
+
+#app-css-inject .avatar-display {
+  overflow: hidden;
+  height: 80px;
+  width: 80px;
+}
+
+#app-css-inject .avatar-display img {
+  height: 100%;
+  width: auto;
 }
 
 #app-css-inject td {
@@ -99,16 +110,16 @@
   background: #f2f2f2;
   padding: 20px;
 }
+#demo-css-inject {
+  background: #f2f2f2;
+  padding: 20px;
+}
 
 #demo-css-inject body {
   background-color: black;
 }
 #people-css-inject {
   height: 100%;
-}
-#demo-css-inject {
-  background: #f2f2f2;
-  padding: 20px;
 }
 #demo-css-inject {
   background: #f2f2f2;

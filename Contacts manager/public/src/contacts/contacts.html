@@ -31,7 +31,11 @@
 				<td colspan="3">You don't have contacts registered :(</td>
 			</tr>
 			<tr ng-if="vm.contacts.length > 0" ng-repeat="contact in filteredContacts = (vm.contacts | orderBy:vm.sorting.propertyName:vm.sorting.reverse | filter:vm.searchText)">
-				<td><div class="avatar small" style="background-image: url('{{contact.image}}')"></div>
+				<td>
+					<div class="avatar small selected" >
+						<img ngf-src="contact.image">
+					</div>
+				</td>
 				<td>{{contact.name}}</td>
 				<td class="text-right">
 					<a ng-href="#!/contact/view/{{contact.id}}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View this contact"><i class="fas fa-eye"></i></a>

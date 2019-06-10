@@ -6,8 +6,8 @@
       <div class="col-2">
         <label>Photo</label>
         <div class="avatar" ng-class="{selected: vm.contact.image}">
-          <img ngf-thumbnail="vm.contact.image || 'https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png'">
-      
+          <img ngf-src="vm.contact.image">
+          
           <div class="select button" ngf-select="vm.onFileSelect($files)" ng-model="vm.contact.image" name="file" ngf-pattern="'image/*'"
           ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
           ngf-resize="{width: 100, height: 100}"><i data-placement="bottom" data-toggle="tooltip" title="Change Image" class="fas fa-camera"></i></div>
@@ -48,16 +48,14 @@
               <option value="">Choose...</option>
             </select>
           </div>
-          <div class="form-group col-md-7">
+          <div class="form-group col-md-8">
             <div class="input-group">
-              <div class="input-group-prepend">
+              <div ng-if="method.type" class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="{{method.type.icon}}"></i></span>
               </div>
               <input type="text" ng-model="method.value" ng-change="vm.methodsValid()" class="form-control" id="validationCustomUsername" placeholder="{{method.type.name}}" aria-describedby="inputGroupPrepend" required>
+              <button type="button" ng-click="vm.removeMethod($index)" class="btn btn-danger delete-input" data-toggle="tooltip" data-placement="bottom" title="Remove this method"><i class="fas fa-times"></i></button>
             </div>
-          </div>
-          <div class="col-md-1">
-            <button type="button" ng-click="vm.removeMethod($index)" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this method"><i class="fas fa-times"></i></button>
           </div>
         </div>
         <button type="button" ng-click="vm.addMethod()" class="btn btn-primary">+ Add Method</button>

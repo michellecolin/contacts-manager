@@ -9,6 +9,11 @@
     margin-top: 5px;
   }
 
+  .delete-input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
   .sweet-alert {
     button {
       &.confirm {
@@ -31,10 +36,10 @@
   .avatar {
     height: $avatar-size;
     width: $avatar-size;
-    background-color: #dddddd;
-    background-size: cover;
+    overflow: hidden;
+    background-image: url(https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png);
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat;
 
     &.small {
       height: $avatar-small-size;
@@ -42,26 +47,32 @@
     }
 
     &.selected {
-      background-color: transparent;
-      img {
-        opacity: 1;
-      }
+      background-image: none;
     }
 
     img {
-      height: 85%;
-      margin-top: 10px;
-      width: 100%;
-      opacity: 0.1;
+      height: 100%;
+      width: auto;
     }
 
     .select {
+      cursor: pointer;
       margin-top: -40px;
       text-align: center;
       color: #007bff;
       font-size: 30px;
       position: absolute;
       margin-left: 60px;
+    }
+  }
+
+  .avatar-display {
+    overflow: hidden;
+    height: $avatar-small-size;
+    width: $avatar-small-size;
+    img {
+      height: 100%;
+      width: auto;
     }
   }
 
