@@ -37,9 +37,15 @@
         <p ng-if="!vm.methodsAreValid" class="form-error">Invalid contact methods. All fields must be completed.</p>
         <div class="form-row" ng-repeat="method in vm.methods">
           <div class="form-group col-md-4">
-            <select id="inputState" ng-model="method.type" ng-change="vm.methodsValid()" class="form-control" required>
-              <option value="" selected>Choose...</option>
-              <option ng-repeat="option in vm.methodsOptions" ng-value="option">{{option.name}}</option>
+            <select 
+              id="inputState" 
+              ng-model="method.type" 
+              ng-options="option.name for option in vm.methodsOptions track by option.id" 
+              ng-change="vm.methodsValid(method)" 
+              class="form-control" 
+              plpaceholder="Select"
+              required>
+              <option value="">Choose...</option>
             </select>
           </div>
           <div class="form-group col-md-7">

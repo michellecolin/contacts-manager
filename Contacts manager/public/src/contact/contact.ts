@@ -6,15 +6,23 @@ module app.contact {
         methodsOptions: any[];
         methods: any[];
         methodsAreValid: boolean = true;
+        editMode: boolean = false;
            
-        static $inject = ['AppService', '$location', 'SweetAlert'];
+        static $inject = ['AppService', '$location', 'SweetAlert', '$routeParams'];
         constructor(
             public appService: AppService,
             public $location: ng.ILocationService,
-            public SweetAlert: SweetAlert
+            public SweetAlert: SweetAlert,
+            public $routeParams: ng.route.IRouteParamsService
         ) {
+            if (this.$routeParams && this.$routeParams.id) {
+                this.contact = this.appService.getContact(this.$routeParams.id);
+                this.methods = this.contact.methods;
+                this.editMode = true;
+            } else {
+                this.methods = [{type: null, value: null}];
+            }
             this.methodsOptions = this.appService.getMethodsOptions();
-            this.methods = [{type: null, value: null}];
         }
 
 
@@ -34,7 +42,16 @@ module app.contact {
         save() {
             if (this.contact && this.contact.name && this.methodsValid()) {
                 this.contact.methods = this.methods;
-                this.appService.saveContact(this.contact);
+                if (this.editMode) {
+                    this.appService.updateContact(this.contact);
+                } else {
+                    this.appService.saveContact(this.contact);
+                }
+                this.SweetAlert.swal({
+                    title: 'Contact saved!',
+                    text: 'Contact saved successfully.',
+                    type: 'success'
+                });
                 this.$location.path('/contacts');
             } else {
                 if (!this.contact || !this.contact.name) {
@@ -53,7 +70,9 @@ module app.contact {
             }
         }
 
-        methodsValid() {
+        methodsValid(method = null) {
+            if (method) { method.value = null};
+
             let valid = true;
             if (this.methods.length > 0) {
                 this.methods.forEach(method => {
