@@ -8,31 +8,6 @@ module app {
         'oitozero.ngSweetAlert'
     ]);
 
-    //routes
-    main.config(routeConfig);
-    routeConfig.$inject = ['$routeProvider'];
-    function routeConfig($routeProvider: ng.route.IRouteProvider): void {
-        $routeProvider
-        .when('/contacts', {
-            templateUrl: "app-templates/contacts/contacts.html",
-            controller: "ContactsCtrl as vm"
-        })
-        .when('/contact', {
-            templateUrl: "app-templates/contact/contact.html",
-            controller: "ContactCtrl as vm"
-        })
-        .when('/contact/:id', {
-            templateUrl: "app-templates/contact/contact.html",
-            controller: "ContactCtrl as vm"
-        })
-        .when('/contact/view/:id', {
-            templateUrl: "app-templates/contact-view/contact-view.html",
-            controller: "ContactViewCtrl as vm"
-        })
-        //.otherwise("/contacts");
-    }
-
-
     //App controller
     class AppCtrl {
         constructor() {
@@ -41,8 +16,32 @@ module app {
     }
     main.controller('AppCtrl', AppCtrl);
 
+    //routes
+    main.config(routeConfig);
+    routeConfig.$inject = ['$routeProvider'];
+    function routeConfig($routeProvider: ng.route.IRouteProvider): void {
+        $routeProvider
+        .when('/contacts', {
+            templateUrl: 'app-templates/contacts/contacts.html',
+            controller: 'ContactsCtrl as vm'
+        })
+        .when('/contact', {
+            templateUrl: 'app-templates/contact/contact.html',
+            controller: 'ContactCtrl as vm'
+        })
+        .when('/contact/:id', {
+            templateUrl: 'app-templates/contact/contact.html',
+            controller: 'ContactCtrl as vm'
+        })
+        .when('/contact/view/:id', {
+            templateUrl: 'app-templates/contact-view/contact-view.html',
+            controller: 'ContactViewCtrl as vm'
+        })
+        .otherwise('/contacts');
+    }
 
-    //models
+    
+    //Models
     interface IContact {
         id: number,
         image: any;

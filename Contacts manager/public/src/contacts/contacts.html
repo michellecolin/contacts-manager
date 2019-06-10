@@ -1,9 +1,5 @@
 <div id="people-css-inject">
 
-	<div class="mt-4">
-		<h4>My Contact's List</h4>
-	</div>
-
 	<nav class="mt-4 navbar p-0">
 		<form class="form-inline">
 			<input ng-model="vm.searchText" data-toggle="tooltip" data-placement="bottom" title="Search through your contact"  class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -33,7 +29,7 @@
 			</tr>
 			<tr ng-if="vm.contacts.length > 0" ng-repeat="contact in filteredContacts = (vm.contacts | orderBy:vm.sorting.propertyName:vm.sorting.reverse | filter:vm.searchText)">
 				<td>
-					<div class="avatar small selected" >
+					<div class="avatar small" ng-class="{'selected': contact.image}" >
 						<img ngf-src="contact.image">
 					</div>
 				</td>

@@ -1,21 +1,24 @@
-var addStream     = require('add-stream');
-var gulp          = require('gulp');
-var nodemon       = require('gulp-nodemon');
-var inject        = require('gulp-inject');
-var concat        = require('gulp-concat');
-var concatCss     = require('gulp-concat-css');
-var cssNano       = require('gulp-cssnano');
-var rename        = require('gulp-rename');
-var sourceMaps    = require('gulp-sourcemaps');
-var templateCache = require('gulp-angular-templatecache');
-var ts            = require('gulp-typescript');
-var tslint        = require('gulp-tslint');
-var uglify        = require('gulp-uglify');
-var sass          = require('gulp-sass');
-var path          = require('path');
-var wiredep       = require('wiredep').stream;
-var _             = require('underscore');
-var browserSync = require('browser-sync');
+let addStream     = require('add-stream');
+let gulp          = require('gulp');
+let nodemon       = require('gulp-nodemon');
+let inject        = require('gulp-inject');
+let concat        = require('gulp-concat');
+let concatCss     = require('gulp-concat-css');
+let cssNano       = require('gulp-cssnano');
+let rename        = require('gulp-rename');
+let sourceMaps    = require('gulp-sourcemaps');
+let templateCache = require('gulp-angular-templatecache');
+let ts            = require('gulp-typescript');
+let tslint        = require('gulp-tslint');
+let uglify        = require('gulp-uglify');
+let sass          = require('gulp-sass');
+let path          = require('path');
+let wiredep       = require('wiredep').stream;
+let _             = require('underscore');
+let browserSync = require('browser-sync');
+
+let _PATH;
+let _ROOT;
 
 // Lint to keep us in line
 gulp.task('lint', function() {
@@ -35,64 +38,78 @@ gulp.task('scripts', function() {
 			suppressImplicitAnyIndexErrors: true,
 			out: 'app.js'
 		}))
-		.pipe(gulp.dest('public/dist'))
+		.pipe(gulp.dest(_PATH))
 		.pipe(rename('app.min.js'))
 		.pipe(uglify())
 		.pipe(sourceMaps.write('.'))
-		.pipe(gulp.dest('public/dist'));
+		.pipe(gulp.dest(_PATH));
 });
+
+gulp.task('css', function () {
+	return gulp.src([
+		'node_modules/bootstrap/dist/css/bootstrap.min.css',
+		'node_modules/sweetalert/lib/sweet-alert.css'
+	])
+	.pipe(concat("lib.css"))
+	.pipe(gulp.dest(`${_PATH}/lib`))
+});
+
 
 // Compile, concat & minify sass
 gulp.task('sass', function () {
 	return gulp.src('public/src/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
-		.pipe(gulp.dest('public/dist/css'));
+		.pipe(gulp.dest(`${_PATH}/css`));
 });
+
 
 gulp.task('concatCss', ['sass'], function () {
 	return gulp.src('public/dist/css/**/*.css')
 		.pipe(concatCss("app.css"))
-		.pipe(gulp.dest('public/dist'))
+		.pipe(gulp.dest(_PATH))
 });
+
 
 gulp.task('cssNano', ['sass', 'concatCss'], function() {
 	return gulp.src('public/dist/app.css')
 		.pipe(cssNano())
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('public/dist'));
+		.pipe(gulp.dest(_PATH));
 });
+
 
 gulp.task('js', function() {
 	return gulp.src([
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/angular/angular.min.js',
 		'node_modules/bootstrap/dist/js/bootstrap.min.js',
-		'node_modules/bootstrap/dist/css/bootstrap.min.css',
 		'node_modules/angular-route/angular-route.min.js',
 		'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
 		'node_modules/sweetalert/lib/sweet-alert.min.js',
-		'node_modules/sweetalert/lib/sweet-alert.css',
 		'node_modules/angular-sweetalert/SweetAlert.min.js'
 	],
 	{base:'node_modules'})
-	.pipe(gulp.dest("./public/lib"))
+	.pipe(concat("lib.js"))
+	.pipe(gulp.dest(`${_PATH}/lib`))
 	.pipe(browserSync.stream());
 });
 
-gulp.task('inject', ['scripts', 'js', 'cssNano'], function(){
+gulp.task('inject', ['scripts', 'js', 'css', 'cssNano'], function(){
 	// inject our dist files
 	var injectSrc = gulp.src([
-		'./public/dist/app.css',
-		'./public/dist/app.js'
+		`${_PATH}/lib/lib.css`,
+		`${_PATH}/lib/lib.js`,
+		`${_PATH}/app.css`,
+		`${_PATH}/app.js`
 	], { read: false });
 
 	var injectOptions = {
-		ignorePath: '/public'
+		ignorePath: `/${_ROOT}`
 	};
 
 	return gulp.src('./public/*.html')
 		.pipe(inject(injectSrc, injectOptions))
-		.pipe(gulp.dest('./public'));
+		.pipe(gulp.dest(`./${_ROOT}`));
 
 });
 
@@ -134,8 +151,19 @@ gulp.task('serve', ['scripts', 'cssNano', 'inject'], function(){
 		});
 });
 
+
 // Default Task
-gulp.task('default', ['lint', 'scripts', 'sass', 'concatCss', 'cssNano', 'inject', 'serve']);
+gulp.task('default', ['set-serve', 'serve']);
+gulp.task('set-serve', function() {
+	_PATH = 'public/dist';
+	_ROOT = 'public';
+});
+
+gulp.task('build', ['set-dist', 'inject']);
+gulp.task('set-dist', function() {
+	_PATH = 'dist';
+	_ROOT = 'dist';
+});
 
 function prepareTemplates() {
 
