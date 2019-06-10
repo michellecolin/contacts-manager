@@ -1,6 +1,7 @@
 let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
+var cors = require('cors');
 
 // Initialize the app
 let app = express();
@@ -11,6 +12,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+//CORS
+app.use(cors());
 
 // Connect to Mongoose and set connection variable
 mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true });

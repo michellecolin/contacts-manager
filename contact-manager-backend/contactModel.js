@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 // Setup schema
 var contactSchema = mongoose.Schema({
+    image: {},
     name: {
       type: String,
       required: true

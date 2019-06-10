@@ -20,6 +20,7 @@ exports.index = (req, res) => {
 // Create a new contact
 exports.new = (req, res) => {
   var contact = new Contact();
+  contact.image = req.body.image;
   contact.name = req.body.name ? req.body.name : contact.name;
   contact.nickname = req.body.nickname;
   contact.methods = req.body.methods;
@@ -55,10 +56,11 @@ exports.update = (req, res)  => {
     if (err) {
       res.send(err);
     }
+    contact.image = req.body.image;
     contact.name = req.body.name ? req.body.name : contact.name;
     contact.nickname = req.body.nickname;
     contact.methods = req.body.methods;
-    
+
     // save the contact and check for errors
     contact.save((err) => {
       if (err) {
