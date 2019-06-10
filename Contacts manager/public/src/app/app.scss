@@ -58,16 +58,11 @@
       height: 100%;
       width: auto;
     }
+  }
 
-    .select {
-      cursor: pointer;
-      margin-top: -40px;
-      text-align: center;
-      color: #007bff;
-      font-size: 30px;
-      position: absolute;
-      margin-left: 60px;
-    }
+  .select {
+    width: 100%;
+    text-align: center;
   }
 
   .avatar-display {

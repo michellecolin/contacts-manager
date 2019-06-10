@@ -7,10 +7,12 @@
         <label>Photo</label>
         <div class="avatar" ng-class="{selected: vm.contact.image}">
           <img ngf-src="vm.contact.image">
-          
-          <div class="select button" ngf-select="vm.onFileSelect($files)" ng-model="vm.contact.image" name="file" ngf-pattern="'image/*'"
+        </div>
+        <div class="select btn btn-primary" ngf-select="vm.onFileSelect($files)" ng-model="vm.contact.image" name="file" ngf-pattern="'image/*'"
           ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
-          ngf-resize="{width: 100, height: 100}"><i data-placement="bottom" data-toggle="tooltip" title="Change Image" class="fas fa-camera"></i></div>
+          ngf-resize="{width: 100, height: 100}">
+            Change Image
+            <i data-placement="bottom" data-toggle="tooltip" title="Change Image" class="fas fa-camera"></i>
         </div>
       </div>
       

@@ -29,7 +29,7 @@
 			</tr>
 			<tr ng-if="vm.contacts.length > 0" ng-repeat="contact in filteredContacts = (vm.contacts | orderBy:vm.sorting.propertyName:vm.sorting.reverse | filter:vm.searchText)">
 				<td>
-					<div class="avatar small" ng-class="{'selected': contact.image}" >
+					<div class="avatar small" ng-class="{'selected': contact.image}">
 						<img ngf-src="contact.image">
 					</div>
 				</td>
