@@ -16,6 +16,9 @@
 #app-css-inject .sortorder.reverse:after {
   content: '\25bc'; }
 
+#app-css-inject .cursor {
+  cursor: pointer; }
+
 #app-css-inject .avatar {
   height: 150px;
   width: 150px;

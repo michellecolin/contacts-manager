@@ -21,6 +21,10 @@
   content: '\25bc';
 }
 
+#app-css-inject .cursor {
+  cursor: pointer;
+}
+
 #app-css-inject .avatar {
   height: 150px;
   width: 150px;
@@ -91,13 +95,13 @@
   float: left;
 }
 
+
 #contacts-css-inject {
   height: 100%;
 }
 #people-css-inject {
   height: 100%;
 }
-
 #demo-css-inject {
   background: #f2f2f2;
   padding: 20px;
@@ -105,10 +109,6 @@
 
 #demo-css-inject body {
   background-color: black;
-}
-#demo-css-inject {
-  background: #f2f2f2;
-  padding: 20px;
 }
 #demo-css-inject {
   background: #f2f2f2;
@@ -120,6 +120,10 @@
 }
 #people-css-inject {
   height: 100%;
+}
+#demo-css-inject {
+  background: #f2f2f2;
+  padding: 20px;
 }
 #demo-css-inject {
   background: #f2f2f2;

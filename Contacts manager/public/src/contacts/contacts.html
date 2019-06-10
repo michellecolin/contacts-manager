@@ -20,8 +20,9 @@
 			<tr>
 				<th class="image"></th>
 				<th scope="col">
-					<span ng-click="vm.sortBy('name')">Name</span>
-					<span class="sortorder" ng-show="vm.sorting.propertyName === 'name'" ng-class="{reverse: vm.sorting.reverse}"></span>
+					<span class="cursor" ng-click="vm.sortBy('name')">Name
+						<span class="sortorder" ng-show="vm.sorting.propertyName === 'name'" ng-class="{reverse: vm.sorting.reverse}"></span>
+					</span>
 				</th>
 				<th scope="col" class="text-right">Actions</th>
 			</tr>
