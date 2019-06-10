@@ -1,14 +1,31 @@
 # contacts manager
 
-This project is generated with [yo angular-typescript-gulp] (https://github.com/danwild/generator-angular-typescript)
-generator
+### Install, Build, Run
 
-## Install, Build, Run
-
-```bash
-tsd install
-gulp
+### install
+```
+  npm install
 ```
 
-The default task has a nodemon watching for changes.<br/>
-To just run server: `gulp serve`
+### Run
+```
+  gulp
+```
+### Build dist
+
+```
+  gulp build
+```
+
+### Run dist
+You can run the dist using the http-server npm module
+```
+npm install http-server -g
+```
+Go to the dist folder and run the server
+````
+cd dist
+http-server
+````
+
+Access the project through the provided url.
