@@ -20,6 +20,8 @@ module app.contact {
           this.contact = result.data.data;
           this.methods = this.contact.methods;
           this.editMode = true;
+        }, (err) => { // err
+          this.appService.showAPIError(err);
         });
         
       } else {

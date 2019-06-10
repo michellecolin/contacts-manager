@@ -46,11 +46,8 @@ module app.contact {
         });
         this.$location.path('/contacts');
       }, 
-      () => { // err
-        this.SweetAlert.swal({
-          title: 'Something went wrong!',
-          type: 'error'
-        });
+      (err) => { // err
+        this.showAPIError(err);
       });
     }
 
@@ -69,11 +66,8 @@ module app.contact {
         this.$location.path('/contacts');
         //this.contacts.push(contact);
       }, 
-      () => { // err
-        this.SweetAlert.swal({
-          title: 'Something went wrong!',
-          type: 'error'
-        });
+      (err) => { // err
+        this.showAPIError(err);
       });
     }
 
@@ -81,6 +75,14 @@ module app.contact {
       return this.$http({
         url: `http://localhost:8080/api/contacts/${id}`,
         method: 'DELETE'
+      });
+    }
+
+    showAPIError(err) {
+      this.SweetAlert.swal({
+        title: 'Something went wrong!',
+        type: 'error',
+        text: err.statusText
       });
     }
   }

@@ -15,7 +15,6 @@ module app.contacts {
       public SweetAlert: SweetAlert
     ) {
       this.load();
-      console.log('lalala');
     }
 
     load() {
@@ -23,6 +22,8 @@ module app.contacts {
       this.appService.getContacts().then((result : ng.IHttpPromiseCallbackArg<{}>) => {
         this.contacts = result.data.data;
         this.loading = false;
+      }, (err) => { // err
+        this.appService.showAPIError(err);
       });
     }
 
@@ -38,14 +39,17 @@ module app.contacts {
         }, 
         (isConfirm) => { 
           if (isConfirm) {
-            this.appService.removeContact(id);
-            this.contacts = this.contacts.filter(contact => {
-              return contact._id !== id;
-            });
-            this.SweetAlert.swal({
-              title: 'Contact Removed!',
-              type: 'success',
-              text: 'Contact removed successfully.'
+            this.appService.removeContact(id).then((result : ng.IHttpPromiseCallbackArg<{}>) => {
+              this.contacts = this.contacts.filter(contact => {
+                return contact._id !== id;
+              });
+              this.SweetAlert.swal({
+                title: 'Contact Removed!',
+                type: 'success',
+                text: 'Contact removed successfully.'
+              });
+            }, (err) => { // err
+              this.appService.showAPIError(err);
             });
           }
         });
