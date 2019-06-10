@@ -39,8 +39,6 @@ module app.contact {
     saveContact(contact) {
       contact.id = 10;
       this.contacts.push(contact);
-
-      console.log(this.contacts);
     }
 
     updateContact(contact) {

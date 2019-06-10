@@ -21,14 +21,14 @@ let _PATH;
 let _ROOT;
 
 // Lint to keep us in line
-gulp.task('lint', function() {
+gulp.task('lint', () => {
 	return gulp.src('public/src/**/*.ts')
 		.pipe(tslint())
 		.pipe(tslint.report('default'));
 });
 
 // Concatenate & minify JS
-gulp.task('scripts', function() {
+gulp.task('scripts', () => {
 
 	return gulp.src('public/src/**/*.ts')
 		.pipe(addStream.obj(prepareTemplates()))
@@ -45,7 +45,7 @@ gulp.task('scripts', function() {
 		.pipe(gulp.dest(_PATH));
 });
 
-gulp.task('css', function () {
+gulp.task('css', () => {
 	return gulp.src([
 		'node_modules/bootstrap/dist/css/bootstrap.min.css',
 		'node_modules/sweetalert/lib/sweet-alert.css'
@@ -56,21 +56,21 @@ gulp.task('css', function () {
 
 
 // Compile, concat & minify sass
-gulp.task('sass', function () {
+gulp.task('sass', () => {
 	return gulp.src('public/src/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest(`${_PATH}/css`));
 });
 
 
-gulp.task('concatCss', ['sass'], function () {
+gulp.task('concatCss', ['sass'], () => {
 	return gulp.src('public/dist/css/**/*.css')
 		.pipe(concatCss("app.css"))
 		.pipe(gulp.dest(_PATH))
 });
 
 
-gulp.task('cssNano', ['sass', 'concatCss'], function() {
+gulp.task('cssNano', ['sass', 'concatCss'], () => {
 	return gulp.src('public/dist/app.css')
 		.pipe(cssNano())
 		.pipe(rename({suffix: '.min'}))
@@ -78,7 +78,7 @@ gulp.task('cssNano', ['sass', 'concatCss'], function() {
 });
 
 
-gulp.task('js', function() {
+gulp.task('js', () => {
 	return gulp.src([
 		'node_modules/jquery/dist/jquery.min.js',
 		'node_modules/angular/angular.min.js',
@@ -94,16 +94,16 @@ gulp.task('js', function() {
 	.pipe(browserSync.stream());
 });
 
-gulp.task('inject', ['scripts', 'js', 'css', 'cssNano'], function(){
+gulp.task('inject', ['scripts', 'js', 'css', 'cssNano'], () => {
 	// inject our dist files
-	var injectSrc = gulp.src([
+	let injectSrc = gulp.src([
 		`${_PATH}/lib/lib.css`,
 		`${_PATH}/lib/lib.js`,
 		`${_PATH}/app.css`,
 		`${_PATH}/app.js`
 	], { read: false });
 
-	var injectOptions = {
+	let injectOptions = {
 		ignorePath: `/${_ROOT}`
 	};
 
@@ -113,9 +113,8 @@ gulp.task('inject', ['scripts', 'js', 'css', 'cssNano'], function(){
 
 });
 
-gulp.task('serve', ['scripts', 'cssNano', 'inject'], function(){
-
-	var options = {
+gulp.task('serve', ['scripts', 'cssNano', 'inject'], () => {
+	let options = {
 		restartable: "rs",
 		verbose: true,
 		ext: "ts html scss",
@@ -128,9 +127,9 @@ gulp.task('serve', ['scripts', 'cssNano', 'inject'], function(){
 		ignore: ["public/dist/*", "public/dist/**/**"],
 		// bit faster if we only do what we need to
 		tasks: function (changedFiles) {
-			var tasks = [];
+			let tasks = [];
 			changedFiles.forEach(function (file) {
-				var ext = path.extname(file);
+				let ext = path.extname(file);
 				if (ext === '.ts' || ext === '.html'){
 					tasks.push('lint');
 					tasks.push('scripts');
@@ -146,7 +145,7 @@ gulp.task('serve', ['scripts', 'cssNano', 'inject'], function(){
 	};
 
 	return nodemon(options)
-		.on('restart', function(ev){
+		.on('restart', (ev) => {
 			console.log('restarting..');
 		});
 });
@@ -154,22 +153,22 @@ gulp.task('serve', ['scripts', 'cssNano', 'inject'], function(){
 
 // Default Task
 gulp.task('default', ['set-serve', 'serve']);
-gulp.task('set-serve', function() {
+gulp.task('set-serve', () => {
 	_PATH = 'public/dist';
 	_ROOT = 'public';
 });
 
 gulp.task('build', ['set-dist', 'inject']);
-gulp.task('set-dist', function() {
+gulp.task('set-dist', () => {
 	_PATH = 'dist';
 	_ROOT = 'dist';
 });
 
 function prepareTemplates() {
 
-	// we get a conflict with the < % = var % > syntax for $templateCache
+	// we get a conflict with the < % = let % > syntax for $templateCache
 	// template header, so we'll just encode values to keep yo happy
-	var encodedHeader = "angular.module(&quot;&lt;%= module %&gt;&quot;&lt;%= standalone %&gt;).run([&quot;$templateCache&quot;, function($templateCache:any) {";
+	let encodedHeader = "angular.module(&quot;&lt;%= module %&gt;&quot;&lt;%= standalone %&gt;).run([&quot;$templateCache&quot;, function($templateCache:any) {";
 	return gulp.src('public/src/**/*.html')
 		.pipe(templateCache('templates.ts', {
 			root: "app-templates",
