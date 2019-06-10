@@ -7,6 +7,14 @@
 #app-css-inject .sweet-alert button.confirm {
   background-color: #bd2130 !important;
 }
+
+#app-css-inject .sortorder:after {
+  content: '\25b2';
+}
+
+#app-css-inject .sortorder.reverse:after {
+  content: '\25bc';
+}
 #contact-css-inject .avatar {
   height: 150px;
   width: 150px;

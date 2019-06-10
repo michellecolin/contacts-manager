@@ -6,7 +6,7 @@ module app.contact {
         methodsOptions: any[];
         methods: any[];
         methodsAreValid: boolean = true;
-
+           
         static $inject = ['AppService', '$location', 'SweetAlert'];
         constructor(
             public appService: AppService,

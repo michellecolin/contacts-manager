@@ -3,7 +3,11 @@
 module app.contacts {
     export class ContactsCtrl {
         contacts: Contact[];
-
+        sorting: {} = {
+            propertyName: 'name',
+            reverse: false
+        };
+        
         static $inject = ['AppService', 'SweetAlert'];
         constructor(
             public appService: AppService,
@@ -14,7 +18,6 @@ module app.contacts {
 
         load() {
             this.contacts = this.appService.getContacts();
-            console.log(this.contacts);
         }
 
         removeContact(index) {
@@ -38,6 +41,11 @@ module app.contacts {
                     }
                 });
         }
+
+        sortBy = function(propertyName) {
+            this.sorting.reverse = (this.sorting.propertyName === propertyName) ? !this.sorting.reverse : false;
+            this.sorting.propertyName = propertyName;
+        };
     }
 
 
