@@ -15,6 +15,7 @@ module app.contacts {
       public SweetAlert: SweetAlert
     ) {
       this.load();
+      console.log('lalala');
     }
 
     load() {

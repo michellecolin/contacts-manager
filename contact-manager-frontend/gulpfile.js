@@ -57,7 +57,6 @@ gulp.task('css', () => {
 
 // Compile, concat & minify sass
 gulp.task('sass', () => {
-	console.log(_PATH);
 	return gulp.src('public/src/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest(`${_PATH}/css`));
@@ -121,14 +120,16 @@ gulp.task('serve', ['scripts', 'cssNano', 'inject'], () => {
 		ext: "ts html scss",
 		script: 'server.js',
 		delayTime: 1,
-		watch: ['public/src/**/*(*.ts|*.html)', 'public/src/**/*.scss'],
+		watch: ['public/dist/*.js', 'public/src/**/*(*.ts|*.html)', 'public/src/**/*.scss'],
 		env: {
 			'PORT': 3000
 		},
 		ignore: ["public/dist/*", "public/dist/**/**"],
 		// bit faster if we only do what we need to
 		tasks: function (changedFiles) {
+			console.log('changed', changedFiles);
 			let tasks = [];
+			tasks.push('set-serve');
 			changedFiles.forEach(function (file) {
 				let ext = path.extname(file);
 				if (ext === '.ts' || ext === '.html'){
@@ -141,7 +142,7 @@ gulp.task('serve', ['scripts', 'cssNano', 'inject'], () => {
 					tasks.push('cssNano');
 				}
 			});
-			return tasks
+			return tasks;
 		}
 	};
 
