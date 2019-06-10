@@ -52,7 +52,9 @@ module app.contact {
     }
 
     removeContact(id) {
-      this.contacts.splice(id, 1);
+      this.contacts = this.contacts.filter(contact => {
+        return contact.id != id;
+      });
     }
   }
 

@@ -20,7 +20,7 @@ module app.contacts {
             this.contacts = this.appService.getContacts();
         }
 
-        removeContact(index) {
+        removeContact(id) {
             this.SweetAlert.swal(
                 {
                     title: 'Delete this contact?',
@@ -32,7 +32,8 @@ module app.contacts {
                 }, 
                 (isConfirm) => { 
                     if (isConfirm) {
-                        this.appService.removeContact(index);
+                        this.appService.removeContact(id);
+                        this.contacts = this.appService.contacts;
                         this.SweetAlert.swal({
                             title: 'Contact Removed!',
                             type: 'success',

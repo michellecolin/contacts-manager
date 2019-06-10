@@ -5,13 +5,16 @@ module app.contact {
       contact: Contact;
       methodsOptions: any[];
 
-      static $inject = ['AppService', '$location'];
+      static $inject = ['AppService', '$location', '$routeParams'];
       constructor(
           public appService: AppService,
-          public $location: ng.ILocationService
+          public $location: ng.ILocationService,
+          public $routeParams: ng.route.IRouteParamsService
       ) {
-        this.methodsOptions = this.appService.getMethodsOptions();
-        this.contact = new Contact(4, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLyHTmJslVAT8rHW944V99fG7ivLdmPFGOOw6rKJ4HXiURG6i1', 'michelle', 'mih', [])
+        if (this.$routeParams && this.$routeParams.id) {
+          this.contact = this.appService.getContact(this.$routeParams.id);
+          this.methodsOptions = this.appService.getMethodsOptions();
+        }
       }
 
 

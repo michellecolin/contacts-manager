@@ -18,7 +18,7 @@
 	<table class="mt-4 table table-hover" *ngIf="vm.contacts">
 		<thead>
 			<tr>
-				<th></th>
+				<th class="image"></th>
 				<th scope="col">
 					<span ng-click="vm.sortBy('name')">Name</span>
 					<span class="sortorder" ng-show="vm.sorting.propertyName === 'name'" ng-class="{reverse: vm.sorting.reverse}"></span>
@@ -36,7 +36,7 @@
 				<td class="text-right">
 					<a ng-href="#!/contact/view/{{contact.id}}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View this contact"><i class="fas fa-eye"></i></a>
 					<a ng-href="#!contact/{{contact.id}}" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Edit this contact"><i class="fas fa-user-edit"></i></a>
-					<button ng-click="vm.removeContact($index)" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this contact"><i class="fas fa-times"></i></button>
+					<button ng-click="vm.removeContact(contact.id)" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Remove this contact"><i class="fas fa-times"></i></button>
 				</td>
 			</tr>
 			<tr ng-if="filteredContacts.length === 0">

@@ -1,5 +1,7 @@
 #app-css-inject {
   $red: #bd2130;
+  $avatar-size: 150px;
+  $avatar-small-size: 80px;
   
   .form-error {
     color: $red;
@@ -27,16 +29,16 @@
   }
 
   .avatar {
-    height: 150px;
-    width: 150px;
+    height: $avatar-size;
+    width: $avatar-size;
     background-color: #dddddd;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
     &.small {
-      height: 80px;
-      width: 80px;
+      height: $avatar-small-size;
+      width: $avatar-small-size;
     }
 
     &.selected {
@@ -65,5 +67,31 @@
 
   td {
     vertical-align: middle;
+  }
+  
+  th {
+    &.image {
+      width: $avatar-small-size;
+    }
+  }
+
+  li {
+    .title {
+      float: left;
+      align-items: center;
+      padding: .375rem .75rem;
+      margin-bottom: 0;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #495057;
+      text-align: center;
+      white-space: nowrap;
+      background-color: #e9ecef;
+    }
+
+    .text {
+      padding: .375rem 1rem;
+      float: left;
+    }
   }
 }

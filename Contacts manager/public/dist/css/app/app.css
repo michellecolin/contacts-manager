@@ -41,3 +41,22 @@
 
 #app-css-inject td {
   vertical-align: middle; }
+
+#app-css-inject th.image {
+  width: 80px; }
+
+#app-css-inject li .title {
+  float: left;
+  align-items: center;
+  padding: .375rem .75rem;
+  margin-bottom: 0;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #495057;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #e9ecef; }
+
+#app-css-inject li .text {
+  padding: .375rem 1rem;
+  float: left; }

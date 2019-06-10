@@ -1,19 +1,34 @@
 <div id="contact-view-css-inject">
-  <h4 class="mt-4">Contact View</h4>
-    <div class="row mt-4">
-      <div class="col-2">
-        <div class="avatar" style="background-image: url('{{vm.contact.image}}')" ng-class="{selected: vm.contact.image}">
-        </div>
-      </div>
-      
-      <div class="col-10">
-        <label>Name:</label> {{vm.contact.name}}
-        <label>Nickname:</label> {{vm.contact.nickname}}
+  <nav class="mt-4 navbar p-0">
+    <h4>Contact View</h4>
+    <a ng-href="#!contact/{{vm.contact.id}}" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Edit this contact">Edit Contact</a>
+  </nav>
+  
+  <div class="row mt-4">
+    <div class="col-2">
+      <div class="avatar" style="background-image: url('{{vm.contact.image}}')" ng-class="{selected: vm.contact.image}">
       </div>
     </div>
-    <hr class="mt-4"/>
-    <div class="float-right">
-      <a ng-href="#!contacts" class="btn btn-primary">Go Back</a>
+    
+    <div class="col-10">
+      <ul class="list-group">
+        <li class="list-group-item p-0">
+          <div class="title">Name</div> 
+          <div class="text">{{vm.contact.name}}</div>
+        </li>
+        <li ng-if="vm.contact.nickname" class="list-group-item p-0">
+          <div class="title">Nickname</div> 
+          <div class="text">{{vm.contact.nickname}}</div>
+        </li>
+        <li ng-repeat="method in vm.contact.methods" class="list-group-item p-0">
+          <div class="title"><i class="{{method.type.icon}}"></i> {{method.type.name}}</div>
+          <div class="text">{{method.value}}</div>
+        </li>
+      </ul>
     </div>
-  </form>
+  </div>
+  <hr class="mt-4"/>
+  <div class="float-right">
+    <a ng-href="#!contacts" class="btn btn-secondary">Go Back</a>
+  </div>
 </div>
