@@ -4,6 +4,7 @@
 
 ### install
 ```
+  typings install
   npm install
 ```
 
