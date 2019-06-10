@@ -57,6 +57,7 @@ gulp.task('css', () => {
 
 // Compile, concat & minify sass
 gulp.task('sass', () => {
+	console.log(_PATH);
 	return gulp.src('public/src/**/*.scss')
 		.pipe(sass().on('error', sass.logError))
 		.pipe(gulp.dest(`${_PATH}/css`));
