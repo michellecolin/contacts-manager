@@ -30,11 +30,7 @@ npm i -g nodemon
 npm install
 ```
 #### Run
-You can run using nodemon or npm. For npm:
-````
-npm start
-````
 
-For nodemon
 ````
 nodemon index
+````
