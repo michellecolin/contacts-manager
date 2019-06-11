@@ -24,7 +24,7 @@ mongo
 ```
 
 
-#### Install other dependencies
+#### Installing other dependencies
 ```
 npm i -g nodemon
 npm install
