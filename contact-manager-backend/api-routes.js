@@ -9,6 +9,8 @@ router.get('/', (req, res) => {
 });
 // Import contact controller
 var contactController = require('./contactController');
+var imagesController = require('./imagesController');
+
 // Contact routes
 router.route('/contacts')
   .get(contactController.index)
@@ -18,6 +20,8 @@ router.route('/contacts/:contact_id')
   .patch(contactController.update)
   .put(contactController.update)
   .delete(contactController.delete);
+router.route('/upload')
+  .post(imagesController.upload);
   
 // Export API routes
 module.exports = router;

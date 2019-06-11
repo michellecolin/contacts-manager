@@ -1,4 +1,6 @@
 Contact = require('./contactModel');
+Image = require('./imageModel');
+const fs = require('fs');
 
 //Get all contacts stored
 exports.index = (req, res) => {
@@ -19,8 +21,8 @@ exports.index = (req, res) => {
 
 // Create a new contact
 exports.new = (req, res) => {
-  var contact = new Contact();
-  contact.image = req.body.image;
+  let contact = new Contact();
+  contact.image = contact.image;
   contact.name = req.body.name ? req.body.name : contact.name;
   contact.nickname = req.body.nickname;
   contact.methods = req.body.methods;
@@ -43,10 +45,30 @@ exports.view = (req, res) => {
     if (err) {
       res.send(err);
     }
-    res.json({
-      message: 'Contact details loading..',
-      data: contact
-    });
+    console.log('aqui', contact.image);
+    if (contact.image) {
+      Image.findById(contact.image, (err, image) => {
+        if (err) {
+          res.send(err);
+        }
+        var base64 = (image.img.data.toString('base64'));
+
+        contact.image = {
+          data: base64,
+          mime: image.img.contentType
+        };
+
+        res.json({
+          message: 'Contact details loaded',
+          data: contact
+        });
+      });
+    } else {
+      res.json({
+        message: 'Contact details loaded',
+        data: contact
+      });
+    }
   });
 };
 
