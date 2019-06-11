@@ -35,3 +35,11 @@ http-server
 ````
 
 Access the project through the provided url.
+
+### Rest API
+The reat API endpoint is defined at the __"service.ts"__ file:
+```
+endpoint: String = 'http://localhost:8080/';
+```
+If run mongo on another port, change this line
+
