@@ -17,7 +17,7 @@ From a terminal, issue the following to run MongoDB (i.e. the mongod process) in
 mongod --config /usr/local/etc/mongod.conf
 ```
 
-To begin using MongoDB, connect a mongo shell to the running instance. From a new terminal, issue the following:
+Connect a mongo shell to the running instance. From a new terminal, issue the following:
 
 ```
 mongo
