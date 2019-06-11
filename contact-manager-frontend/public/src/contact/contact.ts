@@ -7,6 +7,7 @@ module app.contact {
     methods: any[];
     methodsAreValid: boolean = true;
     editMode: boolean = false;
+    submitted;
 
     static $inject = ['AppService', '$location', 'SweetAlert', '$routeParams'];
     constructor(
@@ -31,7 +32,6 @@ module app.contact {
     }
 
     onFileSelect($files) {
-      console.log($files);
       this.contact.image = $files[0];
     }
 
@@ -44,6 +44,7 @@ module app.contact {
           this.appService.saveContact(this.contact);
         }
       } else {
+        this.submitted = true;
         if (!this.contact || !this.contact.name) {
           this.SweetAlert.swal({
             title: 'Name field is required!',
@@ -61,6 +62,7 @@ module app.contact {
     }
 
     methodsValid(method = null) {
+      if (this.submitted) { this.submitted = false; }
       if (method) { method.value = null };
 
       let valid = true;

@@ -7,8 +7,11 @@
   <div class="row mt-4">
     <div class="col-2">
       <div class="avatar" ng-class="{'selected': vm.contact.image}">
-        <img ngf-src="vm.contact.image">
+        <img ng-if="!vm.contact.image.mime" ngf-src="vm.contact.image">
+        <img ng-if="vm.contact.image.mime" data-ng-src="data:{{vm.contact.image.mime}};base64,{{vm.contact.image.data}}"/>
       </div>
+
+      
     </div>
     
     <div class="col-10">

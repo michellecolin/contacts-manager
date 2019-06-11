@@ -4,9 +4,9 @@
   <form name="form" novalidate>
     <div class="row mt-4">
       <div class="col-2">
-        <label>Photo</label>
         <div class="avatar" ng-class="{selected: vm.contact.image}">
-          <img ngf-src="vm.contact.image">
+          <img ng-if="!vm.contact.image.mime" ngf-src="vm.contact.image">
+          <img ng-if="vm.contact.image.mime" data-ng-src="data:{{vm.contact.image.mime}};base64,{{vm.contact.image.data}}"/>
         </div>
         <div class="select btn btn-primary" ngf-select="vm.onFileSelect($files)" ng-model="vm.contact.image" name="file" ngf-pattern="'image/*'"
           ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-12">
         <h5 class="mt-4">Contact Methods</h5>
-        <p ng-if="!vm.methodsAreValid" class="form-error">Invalid contact methods. All fields must be completed.</p>
+        <p ng-if="!vm.methodsAreValid && vm.submitted" class="form-error">Invalid contact methods. All fields must be completed.</p>
         <div class="form-row" ng-repeat="method in vm.methods">
           <div class="form-group col-md-4">
             <select 

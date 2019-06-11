@@ -39,11 +39,12 @@
 
   .avatar {
     height: $avatar-size;
-    width: $avatar-size;
+    width: 100%;
     overflow: hidden;
     background-image: url(https://everydaynutrition.co.uk/wp-content/uploads/2015/01/default-user-avatar.png);
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
 
     &.small {
       height: $avatar-small-size;
@@ -63,6 +64,10 @@
   .select {
     width: 100%;
     text-align: center;
+    &.btn {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
 
   .avatar-display {
