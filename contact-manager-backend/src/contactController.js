@@ -56,7 +56,7 @@ exports.index = (req, res) => {
 // Create a new contact
 exports.new = (req, res) => {
   let contact = new Contact();
-  contact.image = contact.image;
+  contact.image = req.body.image;
   contact.name = req.body.name ? req.body.name : contact.name;
   contact.nickname = req.body.nickname;
   contact.methods = req.body.methods;
