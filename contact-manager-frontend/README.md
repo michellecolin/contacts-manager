@@ -1,4 +1,4 @@
-# contacts manager
+# contacts manager Frontend
 
 ### Install, Build, Run
 
