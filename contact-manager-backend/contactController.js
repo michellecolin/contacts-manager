@@ -1,6 +1,5 @@
 Contact = require('./contactModel');
 Image = require('./imageModel');
-const fs = require('fs');
 
 //Get all contacts stored
 exports.index = (req, res) => {
@@ -11,10 +10,28 @@ exports.index = (req, res) => {
         message: err,
       });
     }
-    res.json({
-      status: 'success',
-      message: 'Contacts retrieved successfully',
-      data: contacts
+    contacts.forEach((contact, index) => {
+      Image.findById(contact.image, (err, image) => {
+        if (err) {
+          res.send(err);
+        }
+        if (image) {
+          var base64 = (image.img.data.toString('base64'));
+
+          contact.image = {
+            data: base64,
+            mime: image.img.contentType
+          };
+        }
+       
+        if ((index + 1) === contacts.length) {
+          res.json({
+            status: 'success',
+            message: 'Contacts retrieved successfully',
+            data: contacts
+          });
+        }
+      });
     });
   });
 };
@@ -45,7 +62,7 @@ exports.view = (req, res) => {
     if (err) {
       res.send(err);
     }
-    console.log('aqui', contact.image);
+    
     if (contact.image) {
       Image.findById(contact.image, (err, image) => {
         if (err) {
@@ -110,3 +127,7 @@ exports.delete = (req, res) => {
     });
   });
 };
+
+function retriveImage() {
+
+}
