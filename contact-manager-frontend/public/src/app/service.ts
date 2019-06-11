@@ -4,6 +4,7 @@ module app.contact {
 
   export class AppService {
     methodsOptions: MethodOption[];
+    endpoint: String = 'http://localhost:8080/';
 
     static $inject = ['$http', '$location', 'SweetAlert', 'Upload'];
     constructor(
@@ -21,11 +22,11 @@ module app.contact {
     }
 
     getContact(id) {
-      return this.$http.get('http://localhost:8080/api/contacts/' + id);
+      return this.$http.get(`${this.endpoint}api/contacts/${id}`);
     }
 
     getContacts() {
-      return this.$http.get('http://localhost:8080/api/contacts');
+      return this.$http.get(`${this.endpoint}api/contacts`);
     }
 
     getMethodsOptions() {
@@ -36,7 +37,7 @@ module app.contact {
       if (callBack || !contact.image) {
         //Image has been uploaded, time to save the contact
         this.$http({
-          url: 'http://localhost:8080/api/contacts',
+          url: `${this.endpoint}api/contacts`,
           method: 'POST',
           data: contact
         })
@@ -58,17 +59,14 @@ module app.contact {
 
     uploadImage(contact, callBack) {
       this.Upload.upload({
-        url: 'http://localhost:8080/api/upload',
+        url: `${this.endpoint}api/upload`,
         method: 'POST',
         data: {file: contact.image}
       }).then((response) => {
         contact.image = response.data.data._id;
-        console.log('hsdahodsa');
         if (callBack == 'saveContact') {
-          console.log('sdjfijfsd');
           this.saveContact(contact, true);
         } else {
-          console.log('allala');
           this.updateContact(contact, true);
         }
       });
@@ -76,9 +74,8 @@ module app.contact {
 
     updateContact(contact, callBack = false) {
       if (callBack || !contact.image) {
-        console.log('lalal');
         this.$http({
-          url: `http://localhost:8080/api/contacts/${contact._id}`,
+          url: `${this.endpoint}api/contacts/${contact._id}`,
           method: 'PUT',
           data: contact
         })
@@ -101,7 +98,7 @@ module app.contact {
 
     removeContact(id) {
       return this.$http({
-        url: `http://localhost:8080/api/contacts/${id}`,
+        url: `${this.endpoint}api/contacts/${id}`,
         method: 'DELETE'
       });
     }
