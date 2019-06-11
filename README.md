@@ -10,3 +10,5 @@ It's a contact manager system, it consists of a frontend aplication and a rest A
 The rest API is located at the __"contact-manager-backend"__ directory. Inside this directory there is a __README.md__ file where you'll find the instructions of how to run the API.
 
 The frontend is located at the __"contact-manager-frontend"__ directory. Inside this directory there is a __README.md__ file where you'll find the instructions of how to run the frontend.
+
+Please, remeber to run the rest API before running the frontend.
