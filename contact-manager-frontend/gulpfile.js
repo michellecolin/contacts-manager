@@ -86,7 +86,8 @@ gulp.task('js', () => {
 		'node_modules/angular-route/angular-route.min.js',
 		'node_modules/ng-file-upload/dist/ng-file-upload.min.js',
 		'node_modules/sweetalert/lib/sweet-alert.min.js',
-		'node_modules/angular-sweetalert/SweetAlert.min.js'
+		'node_modules/angular-sweetalert/SweetAlert.min.js',
+		'node_modules/angular-ui-mask/dist/mask.min.js'
 	],
 	{base:'node_modules'})
 	.pipe(concat("lib.js"))

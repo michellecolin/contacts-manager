@@ -5,13 +5,13 @@ module app {
     'app.templates',
     'ngRoute',
     'ngFileUpload',
-    'oitozero.ngSweetAlert'
+    'oitozero.ngSweetAlert',
+    'ui.mask'
   ]);
 
   //App controller
   class AppCtrl {
     constructor() {
-      console.log('app controller');
     }
   }
   main.controller('AppCtrl', AppCtrl);

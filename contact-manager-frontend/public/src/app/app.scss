@@ -3,6 +3,13 @@
   $avatar-size: 150px;
   $avatar-small-size: 80px;
   
+  .navbar {
+    &.blue {
+      background: #024996;
+      color: #fff;
+    }
+  }
+
   .form-error {
     color: $red;
     font-size: 14px;

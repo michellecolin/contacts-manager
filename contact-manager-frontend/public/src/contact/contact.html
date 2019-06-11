@@ -55,7 +55,8 @@
               <div ng-if="method.type" class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupPrepend"><i class="{{method.type.icon}}"></i></span>
               </div>
-              <input type="text" ng-model="method.value" ng-change="vm.methodsValid()" class="form-control" id="validationCustomUsername" placeholder="{{method.type.name}}" aria-describedby="inputGroupPrepend" required>
+              <input ng-if="method.type.name == 'email'" type="text" ng-model="method.value" ng-change="vm.methodsValid()" class="form-control" id="validationCustomUsername" placeholder="{{method.type.name}}" aria-describedby="inputGroupPrepend" required>
+              <input ng-if="method.type.name != 'email'" type="text" ng-model="method.value" ng-change="vm.methodsValid()" class="form-control" id="validationCustomUsername" placeholder="{{method.type.name}}" aria-describedby="inputGroupPrepend" required>
               <button type="button" ng-click="vm.removeMethod($index)" class="btn btn-danger delete-input" data-toggle="tooltip" data-placement="bottom" title="Remove this method"><i class="fas fa-times"></i></button>
             </div>
           </div>
