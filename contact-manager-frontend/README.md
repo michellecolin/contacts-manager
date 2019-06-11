@@ -4,6 +4,7 @@
 
 ### install
 ```
+npm install -g gulp
 typings install
 npm install
 ```
