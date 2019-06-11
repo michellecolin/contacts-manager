@@ -10,29 +10,46 @@ exports.index = (req, res) => {
         message: err,
       });
     }
-    contacts.forEach((contact, index) => {
-      Image.findById(contact.image, (err, image) => {
-        if (err) {
-          res.send(err);
-        }
-        if (image) {
-          var base64 = (image.img.data.toString('base64'));
 
-          contact.image = {
-            data: base64,
-            mime: image.img.contentType
-          };
-        }
-       
+    let index = 0;
+    const loadImages = () => {
+      const checkEnd = () => {
         if ((index + 1) === contacts.length) {
           res.json({
             status: 'success',
             message: 'Contacts retrieved successfully',
             data: contacts
           });
+        } else {
+          index++;
+          loadImages();
         }
-      });
-    });
+      };
+
+      let contact = contacts[index];
+      if (contact.image) {
+        Image.findById(contact.image, (err, image) => {
+          if (err) {
+            res.send(err);
+          }
+          if (image) {
+            var base64 = (image.img.data.toString('base64'));
+  
+            contact.image = {
+              data: base64,
+              mime: image.img.contentType
+            };
+          }
+          checkEnd();
+        });
+      } else {
+        checkEnd();
+      }
+    }
+
+    if (contacts.length > 0) {
+      loadImages();
+    }
   });
 };
 
