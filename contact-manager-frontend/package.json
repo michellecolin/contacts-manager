@@ -44,7 +44,7 @@
     "gulp-typescript": "^2.8.3",
     "gulp-uglify": "^1.2.0",
     "path": "^0.12.7",
-    "underscore": "^1.8.3",
+    "underscore": "^1.12.1",
     "wiredep": "^3.0.0"
   }
 }
